@@ -33,8 +33,7 @@ for (float i = 0.0; i < MAX; i++) {
   n += 1.0;
 }
 ```
-下图使用了另一种技术着色，通常称为轨道捕获，旨在捕获变换中离特定兴趣点的最终累积最短距离，这可以通过不断`min`来获得。效果如细胞状。   
-
+下图使用了另一种技术着色，通常称为轨道捕获，旨在捕获变换中离特定兴趣点的最终累积最短距离，这可以通过不断`min`来获得。效果如细胞状。  
 <div class="x gr txac">
   <div class="x la flex mg0">
     <div class="x la item3-lg item12 pd0">
@@ -64,6 +63,8 @@ for (float i = 0.0; i < MAX; i++) {
   </div>
   <p>图2：使用其他迭代表达式(ca, cb)</p>
 </div>
+
+<iframe src="https://editor.p5js.org/mosfet-archive/full/kkvG7wXdz" width="620" height="700"></iframe>
 
 ## 曼德尔球
 ```plain
@@ -200,3 +201,5 @@ return 0.25 * log(m) * sqrt(m) / dz;
   </div>
   <p>图4：使用近似距离的高效渲染</p>
 </div>
+
+<iframe src="https://editor.p5js.org/mosfet-archive/full/uf6IlIdml" width="700" height="750"></iframe>
