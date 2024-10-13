@@ -1,0 +1,13 @@
+<nav class="x la sk conf posi-sti pdy3 mgb4 bg-cloud09">
+    <div class="x la con">
+        <ul class="x-list nobound x-heading x gr ff-bressay fw7 fs5 la dsplf fxaib fxww">
+            {% for item in site.data.nav %}
+            <li class="x la mgx2">
+                <a href="{{ item.link }}" {% if page.url==item.link %}style="color: red;" {% endif %}>
+                    {{ item.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
