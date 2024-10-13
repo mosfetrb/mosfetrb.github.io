@@ -4,7 +4,7 @@ title:  "曼德尔球"
 author: mosfet
 tags: 光线行进 符号距离函数 分形
 ---
-## 已知概念
+## 前置概念
 ```plain
 https://en.wikipedia.org/wiki/Fractal
 https://en.wikipedia.org/wiki/Mandelbrot_set
