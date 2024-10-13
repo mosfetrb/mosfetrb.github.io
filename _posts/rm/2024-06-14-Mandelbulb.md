@@ -150,7 +150,7 @@ float sdMANDELBULB( in vec3 pos) {
 </div>
 
 ## 修复建模
-首先介绍可用材料。这里，二次引用提到了SDF中估值近似距离的方法。笔者一并仍未概括。  
+首先介绍可用材料。在重要的估值文章中还引用了SDF中估值近似距离的方法。笔者一并仍未概括。  
 ```plain
 https://thebookofshaders.com/   尚未更新分形，但就是下一章
 
@@ -165,15 +165,15 @@ Introduction to the Mandelbrot set
 渲染分形
 Computing the SDF of fractals    分形距离(估值)
 Mandelbulb fractal               再次提到估值
-3D Julia set fractals
-3D orbit traps
-Procedural orbit traps
-Bitmaps orbit traps
-Geometric orbit traps
-Budhabrot fractals
-Popcorn images
-IFS fractals
-Lyapunov fractals
+3D Julia set fractals      另一种分形
+3D orbit traps             轨道
+Procedural orbit traps     轨道
+Bitmaps orbit traps        轨道
+Geometric orbit traps      轨道
+Budhabrot fractals      用纹理累积轨道逃逸值的一种算法
+Popcorn images 不需要
+IFS fractals               请见IFS
+Lyapunov fractals 不需要
 Icon images
 
 https://iquilezles.org/articles/distance/
@@ -198,5 +198,5 @@ return 0.25 * log(m) * sqrt(m) / dz;
       <img src="/assets/i/1-12.png">
     </div>
   </div>
-  <p>图4：使用近似距离的低消耗渲染</p>
+  <p>图4：使用近似距离的高效渲染</p>
 </div>

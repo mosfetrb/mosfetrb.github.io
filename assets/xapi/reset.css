@@ -310,14 +310,3 @@ template {
 [hidden] {
     display: none !important;
 }
-
-pre {
-    display: block;
-    font-size: 87.5%;
-}
-
-code {
-    color: var(--reset-code);
-    word-break: break-word;
-    background-color: #0001;
-}

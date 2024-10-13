@@ -1,8 +1,9 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/xapi/reset.css">
     <link rel="stylesheet" href="/assets/xapi/font.css">
@@ -13,19 +14,28 @@
 <body>
     <style>
     pre {
+        display: block;
+        font-size: 0.88rem;
+
         border-width: 0.125rem;
-        border-style: solid;
+        border-style: dashed;
         padding: 0.25rem !important;
-        border-color: #2d69d2;
     }
 
     img {
         max-width: 100%;
+        width: 100%;
+    }
+
+    code {
+        color: var(--reset-code);
+        word-break: break-word;
+        background-color: #0001;
     }
     </style>
     <div class="x la conf pd0">
         {% include nav.html %}
-        <div class="x la con posi-rel pdb6 gr ff-bisbee">
+        <div class="x la conf con-lg posi-rel pdb6 gr ff-bisbee">
             {{ content }}
         </div>
     </div>
