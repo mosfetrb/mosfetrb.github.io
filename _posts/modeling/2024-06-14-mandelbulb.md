@@ -5,10 +5,6 @@ author: mosfet
 tags: 隐式建模 分形
 ---
 ## 回顾2D分形
-```plain
-https://en.wikipedia.org/wiki/Fractal
-https://en.wikipedia.org/wiki/Mandelbrot_set
-```
 `分形`意味破碎，断裂。它可能是许多初学者就可以轻松创建的简单图形之一。最著名的分形是`曼德布洛集`。  
 为了获得持续放大的动画，我首先考虑中心位置并将它和鼠标移动事件绑定，处于画面左侧时偏左移动，上侧向上移动，根据已缩放的比率来修正移动量。然后，渲染的平面根据基于时间线性放大的某个倍数来缩小。像平常一样，这些数据可以通过主机传送到着色器上，我通常使用完全一致的代码操作这些基本输入。  
 在片着色器中，每个像素都知道它在平面中代表的顶点，因此直接开始迭代以执行某种变换操作，最终某些位置会保持在分形内，另外的则被排除到集合之外。着色可以通过它们面临临界值`a^2 + b^2 < 4`的行为确定，迭代中期跌出的位置显示灰色。  
@@ -48,27 +44,12 @@ for (float i = 0.0; i < MAX; i++) {
       <img src="/assets/i/1-4.png">
     </div>
   </div>
-  <p>图1：轨道捕获</p>
-</div>
-
-<div class="x gr txac">
-  <div class="x la flex mg0">
-    <div class="x la item3-lg item12 pd0">
-      <img src="/assets/i/1-5.png">
-    </div>
-    <div class="x la item3-lg item12 pd0">
-      <img src="/assets/i/1-6.png">
-    </div>
-  </div>
-  <p>图2：使用其他迭代表达式(ca, cb)</p>
+  <p>图1：经典图形和轨道捕获</p>
 </div>
 
 <iframe src="https://editor.p5js.org/mosfet-archive/full/kkvG7wXdz" width="620" height="700"></iframe>
 
 ## 曼德尔球
-```plain
-https://en.wikipedia.org/wiki/Mandelbulb
-```
 曼德尔球是一种三维分形，由朱尔斯·鲁伊斯于1997年首次构建，并由丹尼尔·怀特和保罗·尼兰德于2009年使用球面坐标进一步发展。标准的三维曼德布洛特集并不存在，因为二维复数空间没有三维类似物。
 
 其变换公式是：
@@ -203,3 +184,10 @@ return 0.25 * log(m) * sqrt(m) / dz;
 </div>
 
 <iframe src="https://editor.p5js.org/mosfet-archive/full/uf6IlIdml" width="700" height="750"></iframe>
+
+## REFS
+```plain
+https://en.wikipedia.org/wiki/Fractal
+https://en.wikipedia.org/wiki/Mandelbrot_set
+https://en.wikipedia.org/wiki/Mandelbulb
+```

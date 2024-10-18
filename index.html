@@ -2,14 +2,28 @@
 layout: layout
 title: Digital Shading Art&Tech
 ---
-<h1>渲染</h1>
+{%
+assign topics1 = site.posts | where_exp: "item", "item.tags contains '隐式建模'"
+%}
+{%
+assign topics2 = site.posts | where_exp: "item", "item.tags contains '场景'"
+%}
+<h1>渲染({{ site.posts | size }})</h1>
 <hr>
-<h2>隐式建模(2)</h2>
+<h2>隐式建模({{ topics1 | size }})</h2>
 <ul>
-    {% for post in site.posts %}
+    {% for post in topics1 %}
     <li>
         <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
     </li>
     {% endfor %}
 </ul>
 <hr>
+<h2>场景({{ topics2 | size }})</h2>
+<ul>
+    {% for post in topics2 %}
+    <li>
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+    </li>
+    {% endfor %}
+</ul>
