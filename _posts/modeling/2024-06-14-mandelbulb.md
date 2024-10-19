@@ -4,7 +4,7 @@ title:  "曼德尔球"
 author: mosfet
 tags: 隐式建模 分形
 ---
-## 回顾2D分形
+## 2D分形
 `分形`意味破碎，断裂。它可能是许多初学者就可以轻松创建的简单图形之一。最著名的分形是`曼德布洛集`。  
 为了获得持续放大的动画，我首先考虑中心位置并将它和鼠标移动事件绑定，处于画面左侧时偏左移动，上侧向上移动，根据已缩放的比率来修正移动量。然后，渲染的平面根据基于时间线性放大的某个倍数来缩小。像平常一样，这些数据可以通过主机传送到着色器上，我通常使用完全一致的代码操作这些基本输入。  
 在片着色器中，每个像素都知道它在平面中代表的顶点，因此直接开始迭代以执行某种变换操作，最终某些位置会保持在分形内，另外的则被排除到集合之外。着色可以通过它们面临临界值`a^2 + b^2 < 4`的行为确定，迭代中期跌出的位置显示灰色。  
@@ -123,11 +123,8 @@ float sdMANDELBULB( in vec3 pos) {
     <div class="x la item3-lg item12 pd0">
       <img src="/assets/i/1-8.png">
     </div>
-    <div class="x la item3-lg item12 pd0">
-      <img src="/assets/i/1-9.png">
-    </div>
   </div>
-  <p>图3：暴力渲染球体</p>
+  <p>图3：渲染结果</p>
 </div>
 
 ## 通过隐式近似估值距离完成SDF
@@ -162,9 +159,6 @@ https://iquilezles.org/articles/distance/
 ```
 这给出近似距离等于：
 ```cpp
-// wn = m = dot(w,w) w=p->
-// wn' = dz = 8……
-// distance estimation (through the Hubbard-Douady potential)
 return 0.25 * log(m) * sqrt(m) / dz;
 ```
 结果如下：  
