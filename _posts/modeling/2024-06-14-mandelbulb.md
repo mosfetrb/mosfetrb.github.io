@@ -157,7 +157,7 @@ Icon images
 
 https://iquilezles.org/articles/distance/
 ```
-这给出近似距离等于：
+这给出解析形式的近似距离等于(我只是抄下来)：
 ```cpp
 return 0.25 * log(m) * sqrt(m) / dz;
 ```
@@ -181,7 +181,5 @@ return 0.25 * log(m) * sqrt(m) / dz;
 
 ## REFS
 ```plain
-https://en.wikipedia.org/wiki/Fractal
-https://en.wikipedia.org/wiki/Mandelbrot_set
 https://en.wikipedia.org/wiki/Mandelbulb
 ```

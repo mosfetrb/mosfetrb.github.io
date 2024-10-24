@@ -8,6 +8,9 @@ assign topics1 = site.posts | where_exp: "item", "item.tags contains '隐式建�
 {%
 assign topics2 = site.posts | where_exp: "item", "item.tags contains '场景'"
 %}
+{%
+assign topics3 = site.posts | where_exp: "item", "item.tags contains '杂项'"
+%}
 <h1>渲染({{ site.posts | size }})</h1>
 <hr>
 <h2>隐式建模({{ topics1 | size }})</h2>
@@ -22,6 +25,14 @@ assign topics2 = site.posts | where_exp: "item", "item.tags contains '场景'"
 <h2>场景({{ topics2 | size }})</h2>
 <ul>
     {% for post in topics2 %}
+    <li>
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+    </li>
+    {% endfor %}
+</ul>
+<h2>杂项({{ topics3 | size }})</h2>
+<ul>
+    {% for post in topics3 %}
     <li>
         <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
     </li>
