@@ -1,9 +1,9 @@
-<nav class="x la sk conf posi-sti pdy3 mgb4-md mgb3 bg-cloud09">
+<nav class="x la sk conf posi-sti pdy3 mgb4-md mgb3 bg-cloud09 x-coord1 zi1">
     <div class="x la con-lg pd0">
         <ul class="x-list nobound x-heading x gr ff-bressay la dsplf fxaib fxww">
             {% for item in site.data.nav %}
             <li class="x la mgx2">
-                <a href="{{ item.link }}" {% if page.url==item.link %}style="color: red;" {% endif %}>
+                <a class="x sk txb" href="{{ item.link }}" {% if page.url==item.link %}{% endif %}>
                     {{ item.name }}
                 </a>
             </li>

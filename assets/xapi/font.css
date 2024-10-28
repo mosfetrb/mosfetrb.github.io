@@ -1,67 +1,4 @@
 @font-face {
-    font-family: "Steradian";
-    font-style: normal;
-    font-weight: 100;
-    src: url("/assets/fonts/Steradian/Steradian-100.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Steradian";
-    font-style: normal;
-    font-weight: 200;
-    src: url("/assets/fonts/Steradian/Steradian-200.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Steradian";
-    font-style: normal;
-    font-weight: 300;
-    src: url("/assets/fonts/Steradian/Steradian-300.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Steradian";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/assets/fonts/Steradian/Steradian-400.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Steradian";
-    font-style: normal;
-    font-weight: 500;
-    src: url("/assets/fonts/Steradian/Steradian-500.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Steradian";
-    font-style: normal;
-    font-weight: 700;
-    src: url("/assets/fonts/Steradian/Steradian-700.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Steradian";
-    font-style: normal;
-    font-weight: 900;
-    src: url("/assets/fonts/Steradian/Steradian-900.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "LexiaMono";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/assets/fonts/LexiaMono/LexiaMono-400.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "LexiaMono";
-    font-style: normal;
-    font-weight: 700;
-    src: url("/assets/fonts/LexiaMono/LexiaMono-700.ttf") format("truetype");
-}
-
-@font-face {
     font-family: "Bressay";
     font-style: normal;
     font-weight: 400;
@@ -73,18 +10,4 @@
     font-style: normal;
     font-weight: 700;
     src: url("/assets/fonts/Bressay/Bressay-700.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Bisbee";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/assets/fonts/Bisbee/Bisbee-400.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Bisbee";
-    font-style: normal;
-    font-weight: 700;
-    src: url("/assets/fonts/Bisbee/Bisbee-700.ttf") format("truetype");
 }
