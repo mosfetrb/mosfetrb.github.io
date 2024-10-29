@@ -1,9 +1,9 @@
 ---
 layout: layout
 ---
-<h1>#{{ page.title }}</h1>
-<p class="x gr fw7 sk tx-earth1">{{ page.date | date: "%y年%m月%d日" }} 作者{{ page.author }}</p>
-<p>{% include tags.html %}</p>
+<h1 class="x la mgb0 mgb2-md">#{{ page.title }}</h1>
+<p class="x la mgb0 mgb2-md"><span class="x gr fw7 sk tx-earth1">{{ page.date | date: "%y年%m月%d日" }}</span> <span class="x ">作者{{ page.author }}</span></p>
+<p class="x gr fs6 la flex fxaic mgx0 sk tx-main3">{% include tags.html %}</p>
 <hr>
 {{ content }}
 <p>{% include related_nav.html %}</p>
