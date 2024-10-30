@@ -27,7 +27,7 @@ AO应该留给补光灯。太阳是如此小的光源，阴影已经处理了这
 </div>
 
 **路径追踪**  
-这是我尚未完成PDF的光线追踪器。  
+这是我尚未完成的示例。  
 <div class="x gr txac">
   <div class="x la flex mg0">
     <div class="x la item6-lg item12 pd0">
