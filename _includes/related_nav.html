@@ -4,11 +4,9 @@ assign related_topics = site.posts | where_exp: "item", "item.tags contains page
 <section class="x la posi-abs x-coord2 dsplb-md dspln">
     <span class="x la dsplb gr txar">相关主题</span>
     <ul>
-        {% for post in related_topics %}
         <li>
-            <a href="{{ post.url }}" {% if post.title==page.title %}style="color: red;" {% endif %}>{{ post.title }}</a>
+            <a href="{{ page.url }}" style="color: red;">{{ page.title }}</a>
         </li>
-        {% endfor %}
         <li><a href="/">返回 </a>
         </li>
     </ul>
