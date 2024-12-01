@@ -2,6 +2,7 @@
 layout: page
 title:  "从隐式方程近似距离场"
 author: mosfet
+category: modeling
 tags: 隐式建模 符号距离函数 隐式方程
 ---
 像球体方程`x^2 + y^2 + z^2 = C`这样的隐式方程描述一种图形。它广泛用于隐式建模中。  
@@ -57,4 +58,4 @@ float sdf( in vec2 p) {
 }
 ```
 
-<iframe src="https://editor.p5js.org/mosfet-archive/full/tUyIMA5xw" width="710" height="750"></iframe>
+<iframe src="https://editor.p5js.org/mosfet-archive/full/tUyIMA5xw" width="700" height="750"></iframe>

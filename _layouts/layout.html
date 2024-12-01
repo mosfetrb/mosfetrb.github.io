@@ -12,39 +12,11 @@
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 </head>
 
-<body>
-    <style>
-    pre {
-        display: block;
-        font-size: 0.88rem;
-
-        border-width: 0.125rem;
-        border-style: dashed;
-        padding: 0.25rem !important;
-    }
-
-    img {
-        max-width: 100%;
-        width: 100%;
-    }
-
-    code {
-        color: var(--reset-code);
-        word-break: break-word;
-        background-color: #0001;
-    }
-
-    iframe {
-        max-width: 100%;
-        overflow: hidden;
-    }
-    </style>
-    <div class="x la conf pd0">
-        {% include nav.html %}
-        <div class="x la conf con-lg posi-rel pdb6 gr ff-bressay">
-            {{ content }}
-        </div>
-    </div>
+<body class="full-pager x la hmin100v mg0 pdt5-lg sk bgb">
+    {% include css.html %}
+    <section class="full-centered x la con-md pd0 bdt2 sk bg-raisin bd-gunmetal02 tx-cloud posi-rel">
+        {{ content }}
+    </section>
 </body>
 
 </html>

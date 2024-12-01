@@ -2,6 +2,7 @@
 layout: page
 title:  "曼德尔球"
 author: mosfet
+category: modeling
 tags: 隐式建模 分形
 ---
 ## 2D分形
