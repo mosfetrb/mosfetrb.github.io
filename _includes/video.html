@@ -1,0 +1,18 @@
+{%
+assign viedo_link = site.data.link | first
+%}
+<video class="home-page-video x la w100v h100v posi-fix x-coord1 zi1 x-fitcover sk bgb" id="myVideo" muted loop width="250">
+    <source src="{{ viedo_link.url }}" type="video/mp4" />
+</video>
+<script>
+document.addEventListener("DOMContentLoaded", (event) => {
+  let v = document.getElementById("myVideo");
+  setTimeout(() => {
+    v.play();
+  }, 10);
+  document.addEventListener("mouseover", (event) => {
+    v.muted = false;
+    v.play();
+  });
+});
+</script>

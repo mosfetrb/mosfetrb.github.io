@@ -24,7 +24,7 @@ title: Digital Shading Art&Tech
             <p><a href="{{ post.url }}">{{ post.title }}</a></p>
             {% endfor %}
         </div>
-        <h1 class="cat-name x-noselect x sk tx-minor">RGSS</h1>
+        <h1 class="cat-name x-noselect x sk tx-minor">RGSS(*未完成*)</h1>
         <div class="">
             {% for post in site.categories.rgss %}
             <p><a href="{{ post.url }}">{{ post.title }}</a></p>
@@ -32,21 +32,4 @@ title: Digital Shading Art&Tech
         </div>
     </div>
 </div>
-{%
-assign viedo_link = site.data.link | first
-%}
-<video class="home-page-video x la w100v h100v posi-fix x-coord1 zi1 x-fitcover" id="myVideo" muted loop width="250">
-    <source src="{{ viedo_link.url }}" type="video/mp4" />
-</video>
-<script>
-window.addEventListener("load", (event) => {
-  let v = document.getElementById("myVideo");
-  setTimeout(() => {
-    v.play();
-  }, 10);
-  this.addEventListener("mouseover", (event) => {
-    v.muted = false;
-    v.play();
-  });
-});
-</script>
+{% include video.html %}
