@@ -4,34 +4,50 @@ title: Digital Shading Art&Tech
 ---
 <article class="home-content-upper x la posi-rel zi2">
     <p class="title x la mg0 mgt2 sk txc-main1">
-        <span>数位着色技术 Digital Shading Art&Tech</span><span> - MOSFET's blog</span>
+        <span>全文目录</span>
     </p>
-    <hr>
+    <div class="x la mgb2 mgb3-md"></div>
     <div class="pages-menu x sk tx-cloud gr txal">
         <div class="menu-flex x la flex mg0" style="font-size: 13px;gap: 1rem;">
-            <h3 class="cat-name x-noselect x sk tx-minor">隐式建模-></h3>
-            <div class="">
-                {% for post in site.categories.modeling %}
-                <p><a href="{{ post.url }}">{{ post.title }}</a></p>
-                {% endfor %}
+            <div class="submenu">
+                <h3 class="category-name x-noselect x sk tx-main1">隐式建模~></h3>
+                <div class="cate-list">
+                    {% for post in site.categories.modeling %}
+                    <p><a href="{{ post.url }}">{{ post.title }}</a></p>
+                    {% endfor %}
+                </div>
             </div>
-            <h3 class="cat-name x-noselect x sk tx-minor">场景-></h3>
-            <div class="">
-                {% for post in site.categories.scene %}
-                <p><a href="{{ post.url }}">{{ post.title }}</a></p>
-                {% endfor %}
+            <div class="submenu">
+                <h3 class="category-name x-noselect x sk tx-main1">场景~></h3>
+                <div class="cate-list">
+                    {% for post in site.categories.scene %}
+                    <p><a href="{{ post.url }}">{{ post.title }}</a></p>
+                    {% endfor %}
+                </div>
             </div>
-            <h3 class="cat-name x-noselect x sk tx-minor">杂项-></h3>
-            <div class="">
-                {% for post in site.categories.miscellaneous %}
-                <p><a href="{{ post.url }}">{{ post.title }}</a></p>
-                {% endfor %}
+            <div class="submenu">
+                <h3 class="category-name x-noselect x sk tx-main1">未分类~></h3>
+                <div class="cate-list">
+                    {% for post in site.categories.uncategorized %}
+                    <p><a href="{{ post.url }}">{{ post.title }}</a></p>
+                    {% endfor %}
+                </div>
             </div>
-            <h3 class="cat-name x-noselect x sk tx-minor">RGSS-></h3>
-            <div class="">
-                {% for post in site.categories.rgss %}
-                <p><a href="{{ post.url }}">{{ post.title }}</a></p>
-                {% endfor %}
+            <div class="submenu">
+                <h3 class="category-name x-noselect x sk tx-main1">RGSS(Ruby图形/游戏引擎)~></h3>
+                <div class="cate-list">
+                    {% for post in site.categories.rgss %}
+                    <p><a href="{{ post.url }}">{{ post.title }}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="submenu">
+                <h3 class="category-name x-noselect x sk tx-main1">杂谈~></h3>
+                <div class="cate-list">
+                    {% for post in site.categories.miscellaneous %}
+                    <p><a href="{{ post.url }}">{{ post.title }}</a></p>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

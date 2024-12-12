@@ -2,7 +2,7 @@
 layout: page
 title:  "照明"
 author: mosfet
-category: miscellaneous
+category: uncategorized
 tags: 杂项 着色 照明
 ---
 如何巧妙组合各种着色技术可能是一项复杂的决策。  
