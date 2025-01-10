@@ -2,9 +2,10 @@
 layout: home_frame
 title: Digital Shading Art&Tech
 ---
+{% include playlist.html %}
 <article class="home-content-upper x la posi-rel zi2">
     <p class="title x la mg0 mgt2 sk txc-main1">
-        <span>全文目录</span>
+        <span>文</span>
     </p>
     <div class="x la mgb2 mgb3-md"></div>
     <div class="pages-menu x sk tx-cloud gr txal">
@@ -34,7 +35,7 @@ title: Digital Shading Art&Tech
                 </div>
             </div>
             <div class="submenu">
-                <h3 class="category-name x-noselect x sk tx-main1">RGSS(Ruby图形/游戏引擎)~></h3>
+                <h3 class="category-name x-noselect x sk tx-main1">RGSS(引擎专案)~></h3>
                 <div class="cate-list">
                     {% for post in site.categories.rgss %}
                     <p><a href="{{ post.url }}">{{ post.title }}</a></p>
@@ -52,4 +53,4 @@ title: Digital Shading Art&Tech
         </div>
     </div>
 </article>
-{% include video.html %}
+<!-- {% include video.html %} -->
