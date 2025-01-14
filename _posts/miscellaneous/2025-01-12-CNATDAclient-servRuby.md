@@ -1,9 +1,9 @@
 ---
 layout: page
-title:  "计算机网络Chap2套接字(Ruby实现)"
+title:  "计网2.7套接字示例(Ruby版本)"
 author: mosfet
 category: miscellaneous
-tags: Tetris
+tags: 计算机科学 计算机网络
 ---
 程序如下：
 
