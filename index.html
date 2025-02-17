@@ -2,11 +2,12 @@
 layout: home_frame
 title: Digital Shading Art&Tech
 ---
-{% include playlist.html %}
+<h1 class="home-webtitle x la mgy3 sk tx-nature01 bg-main1 gr fs0 fw9 lh1 x-cliptext x-italic x-noselect transformed debug16">Digital Shading Art &Tech</h1>
 <article class="home-content-upper x la posi-rel zi2">
     <p class="title x la mg0 mgt2 sk txc-main1">
         <span>文</span>
     </p>
+    <hr>
     <div class="x la mgb2 mgb3-md"></div>
     <div class="pages-menu x sk tx-cloud gr txal">
         <div class="menu-flex x la flex mg0" style="font-size: 13px;gap: 1rem;">
@@ -35,6 +36,13 @@ title: Digital Shading Art&Tech
                     {% endfor %}
                 </div>
             </div>
+            {% else %}
+            <div class="submenu">
+                <h3 class="category-name x-noselect x sk tx-main1">对游客隐藏！</h3>
+                <div class="cate-list">
+                </div>
+            </div>
+            {% endif %}
             <div class="submenu">
                 <h3 class="category-name x-noselect x sk tx-main1">RGSS(引擎专案)~></h3>
                 <div class="cate-list">
@@ -51,24 +59,8 @@ title: Digital Shading Art&Tech
                     {% endfor %}
                 </div>
             </div>
-            {% else %}
-            <div class="submenu">
-                <h3 class="category-name x-noselect x sk tx-main1">已隐藏~></h3>
-                <div class="cate-list">
-                </div>
-            </div>
-            <div class="submenu">
-                <h3 class="category-name x-noselect x sk tx-main1">已隐藏~></h3>
-                <div class="cate-list">
-                </div>
-            </div>
-            <div class="submenu">
-                <h3 class="category-name x-noselect x sk tx-main1">已隐藏~></h3>
-                <div class="cate-list">
-                </div>
-            </div>
-            {% endif %}
         </div>
     </div>
 </article>
 <!-- {% include video.html %} -->
+{% include playlist.html %}
