@@ -50,3 +50,64 @@ tags: 场景
 </div>
 
 首先要讨论的是自己。不容忽视的一点是观察者永远处于其自己开始的球系中。
+
+我会先贴上最简单的插值版本：该代码由Coplit生成。  
+```cpp
+vec3 sky_pro(vec3 normal, float time) {
+    // Normalize the normal vector and extract the Y-axis component
+    float height = normalize(normal).y;
+
+    // Define the colors for different times of the day
+    vec3 dawnSunsetTop = vec3(0.1, 0.1, 0.3); // 深蓝色或紫色
+    vec3 dawnSunsetHorizon = vec3(1.0, 0.5, 0.3); // 橙色、红色或粉红色
+    vec3 dayTop = vec3(0.4, 0.7, 1.0); // 明亮的蓝色
+    vec3 dayHorizon = vec3(0.7, 0.9, 1.0); // 浅蓝色或白色
+    vec3 nightTop = vec3(0.0, 0.0, 0.1); // 深蓝色或黑色
+    vec3 nightHorizon = vec3(0.0, 0.0, 0.1); // 深蓝色或黑色
+
+    // Compute the time factor (0.0 to 1.0) representing the 24-hour cycle
+    float t = mod(time, 24.0) / 24.0;
+
+    // Determine the interpolated sky color based on the balanced time of day
+    vec3 topColor;
+    vec3 horizonColor;
+    if (t < 0.125) {
+        // Dawn
+        topColor = mix(nightTop, dawnSunsetTop, t / 0.125);
+        horizonColor = mix(nightHorizon, dawnSunsetHorizon, t / 0.125);
+    } else if (t < 0.375) {
+        // Morning
+        topColor = mix(dawnSunsetTop, dayTop, (t - 0.125) / 0.25);
+        horizonColor = mix(dawnSunsetHorizon, dayHorizon, (t - 0.125) / 0.25);
+    } else if (t < 0.5) {
+        // Afternoon
+        topColor = dayTop;
+        horizonColor = dayHorizon;
+    } else if (t < 0.75) {
+        // Sunset
+        topColor = mix(dayTop, dawnSunsetTop, (t - 0.5) / 0.25);
+        horizonColor = mix(dayHorizon, dawnSunsetHorizon, (t - 0.5) / 0.25);
+    } else {
+        // Night
+        topColor = mix(dawnSunsetTop, nightTop, (t - 0.75) / 0.25);
+        horizonColor = mix(dawnSunsetHorizon, nightHorizon, (t - 0.75) / 0.25);
+    }
+
+    // Interpolate between top and horizon colors based on height (Y-axis)
+    vec3 skyColor = mix(horizonColor, topColor, height);
+
+    return skyColor;
+}
+```
+
+<div class="x gr txac">
+  <div class="x la flex mg0">
+    <div class="x la item6-lg item12 pd0">
+      <img src="/assets/i/6-1.png">
+    </div>
+    <div class="x la item6-lg item12 pd0">
+       <img src="/assets/i/6-2.png">
+    </div>
+  </div>
+  <p>图1：程序插值</p>
+</div>
