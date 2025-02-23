@@ -3,31 +3,17 @@ layout: page
 title:  "混合密度"
 author: mosfet
 category: illumination
-tags: 着色 照明 理论 渲染器
+tags: 着色 全局照明
 ---
 混合密度的尝试[(见)](https://raytracing.github.io/books/RayTracingTheRestOfYourLife.html)。留存一些笔记和记录，而然结论无法保证正确性。  
-## 场景示例
+## NEW_RENDERED
 <div class="x gr txac">
   <div class="x la flex mg0">
     <div class="x la item3-lg item12 pd0">
       <img src="/assets/i/4-1.png">
     </div>
-    <div class="x la item3-lg item12 pd0">
-      <img src="/assets/i/4-2.png">
-    </div>
-    <div class="x la item3-lg item12 pd0">
-      <img src="/assets/i/4-3.png">
-    </div>
   </div>
-  <p>图1：场景1。对球灯混合采样</p>
-</div>
-<div class="x gr txac">
-  <div class="x la flex mg0">
-    <div class="x la item3-lg item12 pd0">
-      <img src="/assets/i/4-4.png">
-    </div>
-  </div>
-  <p>图2：场景2。对顶灯混合采样 2024/02/22</p>
+  <p>图1：场景1，对顶灯混合采样 2024/02/22</p>
 </div>
 
 ---
