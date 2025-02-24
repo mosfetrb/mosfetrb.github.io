@@ -1,16 +1,15 @@
 ---
 layout: page
-title:  "渲染器实施"
+title:  "渲染器"
 author: mosfet
 category: illumination
-tags: 着色 照明
+tags: 着色/照明 渲染器决策
 ---
-有一系列渲染或着色、照明技术，从什么方面考虑选择它们？  
+要编写一个渲染器，可以选择多种技术。从什么方面考虑选择它们？  
 除了倾诉全局光照算法之外，传统着色模型也可以通过精心设计的调整为场景提供可信的照明！  
-实践中，还有一些额外的小技巧可以作为某类效果的代替。  
+实践中，还有一些额外的小技巧可以作为某类效果的估计。  
 
----
-## 粗略全局照明
+## 粗略近似全局照明
 对大型景观进行户外照明时，间接照明的贡献只是适度且可预测的。因此代替方案是优先选择。  
 场景可以由3或4个定向灯、一些阴影、一些环境光遮蔽和一个雾层组成。  
 
@@ -26,31 +25,71 @@ AO应该留给补光灯。太阳是如此小的光源，阴影已经处理了这
       <img src="/assets/i/3-1.png">
     </div>
   </div>
-  <p>图1：多种代替技巧混合渲染</p>
+  <p>图1：代替技巧</p>
 </div>
 
----
 ## 路径追踪
 <div class="x gr txac">
   <div class="x la flex mg0">
     <div class="x la item5-lg item12 pd0">
       <img src="/assets/i/3-2.png">
     </div>
-    <div class="x la item5-lg item12 pd0">
-      <img src="/assets/i/3-3.png">
-    </div>
   </div>
-  <p>图2：Cornell盒(混合采样 2024/10/31)</p>
+  <p>图2：混合采样 2025/02/24)</p>
 </div>
 
----
 ## 发射阴影光线进行路径追踪
-
-实际上最近我正在考虑另一种传统上的路径追踪模型。目前，我分叉了几个典型的路径追踪器(标准交叉方式)，一个是具有混合密度等最高级理论的版本，仅用于探索、渲染特定实验场景；另一个在方案上稍微宽松并努力选择最简单的方式进行渲染，因此适用于通用场景。  
+最近我正在考虑另一种传统方式的路径追踪。累积方式不同。截至目前，我分叉了几个典型的路径追踪器(标准交叉方式)，一个是具有混合密度等理论的优先版本，仅用于探索、渲染特定实验场景；另一个在方案上稍微宽松并努力选择最简单的方式进行渲染，并对天空等大型光源进行PDF采样，因此适用于通用场景。  
 而然，它们从不使用**阴影射线**。从结果上讲，对光的密度采样即使存在被遮挡的情况，它也只是在下一次散射中暂时未直接命中灯具。  
 
-当我们使用阴影光线时，就必须小心这一点，因为它将造成破坏。   
-使用阴影光线的渲染在计算BRDF前，每次对场景灯光进行采样并评估照明量，特别是，这检查遮挡并产生一个因子，也就是说，交叉的计算量将翻倍。光亮因子可选择朗伯着色模型。实际上可以完美地提供其参数，表面颜色来自于BRDF，光强度、灯光序号从采样函数中返回。结果可获得强烈的阴影效果，就像我开头提到的，存在的间接照明可能被遮蔽。  
+现在我们来看阴影光线如何驱动全局光照。首先获取一条光线，然后该函数可以计算其朗伯照明贡献值。  
+```cpp
+void get_one_lightray( in vec3 p, out vec3 rayd, out int lid) {
+  // 采样光线方向，采样ID
+  // 天空不需要根据dot衰减直接光，只需要应用朗伯分布更多地采样垂直颜色
+    lid = LID_01;
+    rayd = normalize(light_pos - p); // 已在这里标准化shadowray
+}
+vec3 calc_dotdirect( in vec3 ro, in vec3 rd, in int tarlid, in vec3 n) {
+  // 计算直接照明该表面的颜色
+  // 当命中目标不是指定灯具时被遮挡
+  float k = scene(ro, rd, id, light_normal);
+  bool shadowed = (k < INF && tarlid != id) || (tarlid == LID_00 && k < INF);
+  if (shadowed) return vec3(0.0);
+
+  // 计算灯的材料获取灯光颜色
+  if (tarlid == LID_00) {
+    return sky(rd) * 1.0;
+  } else if (tarlid == LID_01) {
+    return light_material.albedo * lambertian(n, rd) * 1.0;
+  }
+  return vec3(0.0);
+}
+```
+现在为了尝试只查看某种直接光照的结果，进行路径追踪，但取每一处的平均值。  
+```cpp
+vec3 direct_transport( in vec3 ray_origin, in vec3 ray_path) {
+  vec3 d_col = vec3(0.0);
+  for (i = 1; i <= 15; i++) {
+    if (k >= INF) {
+      if (i == 1) return sky(ray_path) && break;; // bool -> first miss -> bg
+    }
+
+    vec3 shadow_ray;
+    int lid;
+    get_one_lightray(p, shadow_ray, lid);
+    d_col += calc_dotdirect(p, shadow_ray, lid, normal);
+
+    // BRDF
+    else if (material.mid == M_LIGHT) {
+      return material.albedo;
+      // Light(material, albedo);
+      break;
+    }
+  }
+  return d_col / float(i);
+}
+```
 <div class="x gr txac">
   <div class="x la flex mg0">
     <div class="x la item4-lg item12 pd0">
@@ -63,53 +102,51 @@ AO应该留给补光灯。太阳是如此小的光源，阴影已经处理了这
       <img src="/assets/i/3-6.png">
     </div>
   </div>
-  <p>图3：发送阴影获得直接照明</p>
+  <p>图3：发送阴影获得直接照明；1次、15次(多个光源、一个光源)</p>
 </div>
 
+混合两个值的直觉很难。`total_col`总计照明。当未命中时，中断返回总计值，如果第一次未命中，返回环境颜色。  
+接下来，以朗伯着色计算常规照明，实际上求和多个光源，路径表面 * 采样光源视为一个单独光源。  
+另外，灯光材料像之前一样停止就好了。  
 ```cpp
-vec3 direct_transport( in vec3 ray_origin, in vec3 ray_path) {
-  vec3 albedo = vec3(1.0);
-  vec3 d_col = vec3(0.0);
-  bool first_miss = false;
-  for (i = 1; i <= 15; i++) {
+vec3 shadowray_transport( in vec3 ray_origin, in vec3 ray_path) {
+  vec3 total_col = vec3(0.0);
+  for (i = 1; i <= 5; i++) {
     float k = scene(ray_origin, ray_path, id, normal);
-
-    if (k < INF) {
-      // ...
-   
-      // cast
-      if (material.mid != M_LIGHT) {
-        vec3 shadow_ray;
-        int lid;
-        random_sampling_lights(p, shadow_ray, lid);
-        d_col += direct_lighting(p, shadow_ray, lid, normal);
-      } else {
-        d_col += material.albedo;
-      }
-
-      // BRDF...
-      ray_origin = p;
-    } else {
-      if (i == 1) first_miss = true;
-      break;
+    if (k >= INF) {
+      if (i == 1) {
+        return sky(ray_path) * ENV_LIGHTSOURCE;
+      } else break; // 往后中断返回total_col
     }
+
+    // 命中发送阴影，计算光照
+    // 可能出现命中灯具并采样灯具的情况
+    vec3 d_col = vec3(0.0);
+    vec3 shadow_ray;
+    int lid;
+    get_one_lightray(p, shadow_ray, lid);
+    d_col = calc_dotdirect(p, shadow_ray, lid, normal);
+
+    // BRDF
+    total_col += albedo * d_col;
   }
-  if (first_miss) { // 对结果增加背景
-    return sky(ray_path);
-  }
-  return d_col / float(i);
+  return total_col;
 }
 ```
+<div class="x gr txac">
+  <div class="x la flex mg0">
+    <div class="x la item4-lg item12 pd0">
+      <img src="/assets/i/3-7.png">
+    </div>
+    <div class="x la item4-lg item12 pd0">
+      <img src="/assets/i/3-8.png">
+    </div>
+  </div>
+  <p>图4：漫射</p>
+</div>
 
-通常情况下，击中物体的离光背面并进行投射阴影会导致其被自身遮挡，这当然是正确的。对于必须透光的玻璃，不仔细考虑这个照明因子很容易产生错误的结果。首先，无法断定命中玻璃的光背面并穿过时是否应该被取消遮挡判定，如果是这样，哪怕先移动到正面并额外计算一次投射也是不行的，考虑一系列玻璃珠的排列。  
-另外，侧对光源时，其直接贡献被降至0，同样容易使间接照明丢失。从技术上来说，第一个问题可以通过在投射阴影时忽略拷贝场景中的电介质解决，而然，这使得它的软阴影成为了不可能，这将与其他材质产生冲突；第二个问题则很难解决，因为其直接贡献确实为0，我们想象加强电介质的对光源的反应是有意义的，这必须修改其因子使用的方式，至少不能是乘法。避免使用乘法因子并单独只是求和可以同时避免这些问题，并且正面会更亮。  
+使用阴影光线这种不同的方式时，小心引入的潜在破坏。  
+每个照明量检查遮挡，当然意味着交叉的计算量将翻倍。朗伯着色模型的参数可以完美地提供，表面颜色来自于BRDF，光强度、灯光序号从采样函数中返回。结果可获得强烈的阴影效果，就像我开头提到的，某些地方的间接照明可能被未发觉地遮蔽。  
 
-混合两个值的直觉很难。  
-尽管采样天空存在一定灯光角度，但你不应该计算其朗伯因子，这将导致地图边界发暗。  
-实际上，只要对其他灯光进行采样，就会自然影响到地平线，从而对背景产生分割，一个简单的方法是按照概率降低实际看到的天空亮度。  
-```cpp
-if (i == 1) {
-  d_col = sky(ray_path);
-}
-return d_col / float(i) * albedo;
-```
+通常情况下，击中物体的离光背面并进行投射阴影会导致其被自身遮挡，这当然是正确的。对于必须透光的玻璃，不仔细考虑很容易产生错误的结果。首先，无法断定命中玻璃的光背面并穿过时是否应该被取消遮挡判定，如果是这样，哪怕先移动到正面并额外计算一次投射也是不行的，考虑一系列玻璃珠的排列。  
+另外，侧对光源时，其直接贡献被降至0，这也将导致电介质的显示异常。第一个问题的临时解决是可以通过在投射阴影时忽略拷贝场景中的电介质，而然，这使得它的软阴影成为了不可能，这将与其他材质产生冲突；第二个问题则很难解决，因为其直接贡献确实为0，我们想加强正常散射电介质的对光源的反应是有意义的，现在反而完全遮蔽它。  
