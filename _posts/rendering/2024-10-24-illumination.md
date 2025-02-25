@@ -1,9 +1,9 @@
 ---
 layout: page
-title:  "渲染器"
+title:  "光照决策"
 author: mosfet
-category: illumination
-tags: 着色/照明 渲染器决策
+category: rendering
+tags: 渲染 着色/照明
 ---
 要编写一个渲染器，可以选择多种技术。从什么方面考虑选择它们？  
 除了倾诉全局光照算法之外，传统着色模型也可以通过精心设计的调整为场景提供可信的照明！  

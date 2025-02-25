@@ -1,9 +1,9 @@
 ---
 layout: page
-title:  "PBR理论"
+title:  "渲染方程"
 author: mosfet
-category: illumination
-tags: 着色/照明 全局照明 理论 辐射度
+category: rendering
+tags: 渲染 着色/照明 全局照明
 ---
 
 ---

@@ -2,8 +2,8 @@
 layout: page
 title:  "混合密度"
 author: mosfet
-category: illumination
-tags: 着色/照明 全局照明
+category: rendering
+tags: 渲染 着色/照明 全局照明
 ---
 混合密度的尝试[(见)](https://raytracing.github.io/books/RayTracingTheRestOfYourLife.html)。留存一些记录。  
 ## NEWS
